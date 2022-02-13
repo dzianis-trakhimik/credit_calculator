@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Credit Calculator</string>
+    <string name="tv_amount_title">Amount of credit:</string>
+    <string name="tv_title_percent">Percent:</string>
+    <string name="tv_payments_count">Count of payments:</string>
+    <string name="btn_calculate">Calculate</string>
 </resources>
