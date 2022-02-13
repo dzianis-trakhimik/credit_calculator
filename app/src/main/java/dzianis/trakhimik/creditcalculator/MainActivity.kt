@@ -8,7 +8,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import dzianis.trakhimik.creditcalculator.helpers.CalculateHelper
+import dzianis.trakhimik.creditcalculator.dtos.ScheduleDetailsModel
+import java.lang.StringBuilder
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -20,8 +21,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var tv_result: TextView
 
     private var amount = 0
-    private var percent = 0f
+    private var yearPercent = 0f
     private var paymentsCount = 0
+    private var detailsModel: ScheduleDetailsModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +41,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun calculate() {
         refreshValues()
-        tv_result.text = CalculateHelper().getMonthlyPayment(amount, paymentsCount, percent).toString()
+        val details = ScheduleDetailsModel(amount = amount, paymentsCount = paymentsCount, percent = yearPercent)
+        btn_showSchedule.isEnabled = true
+        var detailsStr = with(StringBuilder()) {
+            this.append("Monthly payment: ${details.monthlyPayment}\n")
+            this.append("Overpayment: ${details.overPayment}")
+            this.toString()
+        }
+
+        tv_result.text = detailsStr
     }
 
     private fun showScheduleActivity() {
@@ -48,7 +58,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun refreshValues() {
         et_amount.text.toString()?.let { if (it.isNotEmpty()) amount = it.toInt() }
-        et_percent.text.toString()?.let { if (it.isNotEmpty()) percent = it.toFloat() }
+        et_percent.text.toString()?.let { if (it.isNotEmpty()) yearPercent = it.toFloat() }
         et_paymentsCount.text.toString()?.let { if (it.isNotEmpty()) paymentsCount = it.toInt() }
     }
 
