@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CreditCalculator">
         <activity
+            android:name=".PaymentsScheduleActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

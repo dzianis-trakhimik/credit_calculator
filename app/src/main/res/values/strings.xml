@@ -4,4 +4,9 @@
     <string name="tv_title_percent">Percent:</string>
     <string name="tv_payments_count">Count of payments:</string>
     <string name="btn_calculate">Calculate</string>
+    <string name="schedule_month_title">Month</string>
+    <string name="schedule_payment_title">Payment</string>
+    <string name="schedule_payment_down_title">Payment down</string>
+    <string name="schedule_payment_percents_title">Percents\' payment</string>
+    <string name="btn_show_schedule_title">Show details of schedule</string>
 </resources>
