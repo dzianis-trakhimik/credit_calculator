@@ -1,8 +1,9 @@
 package dzianis.trakhimik.creditcalculator.dtos
 
 import dzianis.trakhimik.creditcalculator.helpers.CalculateHelper
+import java.io.Serializable
 
-class ScheduleDetailsModel(val amount: Int = 0, val paymentsCount: Int = 0, val percent: Float = 0f) {
+class ScheduleDetailsModel(val amount: Int = 0, val paymentsCount: Int = 0, val percent: Float = 0f) : Serializable {
     val monthlyPayment: Float
     val payments: MutableList<MonthlyPaymentDetailsModel> = mutableListOf()
     var overPayment: Float = 0f

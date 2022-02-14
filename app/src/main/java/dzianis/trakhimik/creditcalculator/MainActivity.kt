@@ -41,11 +41,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun calculate() {
         refreshValues()
-        val details = ScheduleDetailsModel(amount = amount, paymentsCount = paymentsCount, percent = yearPercent)
+        detailsModel = ScheduleDetailsModel(amount = amount, paymentsCount = paymentsCount, percent = yearPercent)
         btn_showSchedule.isEnabled = true
         var detailsStr = with(StringBuilder()) {
-            this.append("Monthly payment: ${details.monthlyPayment}\n")
-            this.append("Overpayment: ${details.overPayment}")
+            this.append("Monthly payment: ${detailsModel?.monthlyPayment}\n")
+            this.append("Overpayment: ${detailsModel?.overPayment}")
             this.toString()
         }
 
@@ -53,7 +53,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun showScheduleActivity() {
-        startActivity(Intent(this, PaymentsScheduleActivity::class.java))
+        startActivity(with(Intent(this, PaymentsScheduleActivity::class.java)) {
+            this.putExtra("data", detailsModel)
+            this
+        })
     }
 
     private fun refreshValues() {
